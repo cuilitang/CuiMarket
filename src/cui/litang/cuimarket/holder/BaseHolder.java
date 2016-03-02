@@ -1,4 +1,4 @@
-package cui.litang.cuimarket.Holder;
+package cui.litang.cuimarket.holder;
 
 import android.view.View;
 

@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
-import cui.litang.cuimarket.Holder.BaseHolder;
+import cui.litang.cuimarket.holder.BaseHolder;
 
 public abstract class MyBaseAdapter<T> extends BaseAdapter {
 

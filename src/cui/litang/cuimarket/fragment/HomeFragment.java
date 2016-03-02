@@ -9,9 +9,9 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import cui.litang.cuimarket.BaseFragment;
-import cui.litang.cuimarket.Holder.BaseHolder;
 import cui.litang.cuimarket.adapter.MyBaseAdapter;
 import cui.litang.cuimarket.fragment.AppFragment.ViewHolder;
+import cui.litang.cuimarket.holder.BaseHolder;
 import cui.litang.cuimarket.utils.UIUtils;
 import cui.litang.cuimarket.widget.LoadingPage.LoadingState;
 
