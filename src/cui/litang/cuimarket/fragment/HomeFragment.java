@@ -39,6 +39,12 @@ public class HomeFragment extends BaseFragment {
 			super(view, mDatas);
 		}
 
+		@Override
+		protected List onLoadMore() {
+			HomeProtocol protocol = new HomeProtocol();
+			return protocol.load(getmDatas().size());
+		}
+
 		
 	}
 	

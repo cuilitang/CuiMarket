@@ -7,6 +7,7 @@ import cui.litang.cuimarket.BaseFragment;
 import cui.litang.cuimarket.adapter.BaseListAdapter;
 import cui.litang.cuimarket.bean.AppInfo;
 import cui.litang.cuimarket.jsonparser.AppProtocol;
+import cui.litang.cuimarket.jsonparser.HomeProtocol;
 import cui.litang.cuimarket.utils.UIUtils;
 import cui.litang.cuimarket.widget.BaseListView;
 import cui.litang.cuimarket.widget.LoadingPage.LoadingState;
@@ -35,6 +36,11 @@ public class AppFragment extends BaseFragment {
 
 		public AppAdapter(ListView view, List<AppInfo> mDatas) {
 			super(view, mDatas);
+		}
+
+		@Override
+		protected List onLoadMore() {
+			return null;
 		}
 
 		

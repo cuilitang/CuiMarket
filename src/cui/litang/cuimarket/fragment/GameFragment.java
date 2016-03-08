@@ -38,6 +38,12 @@ public class GameFragment extends BaseFragment {
 		public GameAdapter(ListView view, List<AppInfo> mDatas) {
 			super(view, mDatas);
 		}
+
+		@Override
+		protected List onLoadMore() {
+			// TODO Auto-generated method stub
+			return null;
+		}
 	}
 
 }

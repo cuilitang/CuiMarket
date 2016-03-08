@@ -7,7 +7,7 @@ import cui.litang.cuimarket.bean.AppInfo;
 import cui.litang.cuimarket.holder.BaseHolder;
 import cui.litang.cuimarket.holder.HomeHolder;
 
-public class BaseListAdapter extends MyBaseAdapter<AppInfo> {
+public abstract class BaseListAdapter extends MyBaseAdapter<AppInfo> {
 
 	public BaseListAdapter(ListView view, List<AppInfo> mDatas) {
 		super(view, mDatas);
