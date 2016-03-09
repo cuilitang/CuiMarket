@@ -40,11 +40,9 @@ public class AppFragment extends BaseFragment {
 
 		@Override
 		protected List onLoadMore() {
-			return null;
+			AppProtocol protocol = new AppProtocol();
+			return protocol.load(mDatas.size());
 		}
-
-		
-		
 	}
 	
 	

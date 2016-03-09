@@ -41,8 +41,8 @@ public class GameFragment extends BaseFragment {
 
 		@Override
 		protected List onLoadMore() {
-			// TODO Auto-generated method stub
-			return null;
+			GameProtocol protocol = new GameProtocol();
+			return protocol.load(mDatas.size());
 		}
 	}
 
