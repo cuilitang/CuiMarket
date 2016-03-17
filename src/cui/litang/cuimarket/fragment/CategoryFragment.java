@@ -65,8 +65,6 @@ public class CategoryFragment extends BaseFragment {
 		public View getView(int position, View convertView, ViewGroup parent) {
 			
 			this.position = position;
-			
-			
 			return super.getView(position, convertView, parent);
 		}
 		
