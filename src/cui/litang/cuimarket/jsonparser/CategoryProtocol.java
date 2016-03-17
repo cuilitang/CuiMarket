@@ -22,6 +22,10 @@ public class CategoryProtocol extends BaseParser<List<CategoryInfo>> {
 	// 解析json
 	@Override
 	protected List<CategoryInfo> parseFromJson(String json) {
+		
+		System.out.println(">>>>>>>>>>");
+		System.out.println(json);
+		System.out.println("<<<<<<<<<<<<<");
 		try {
 			List<CategoryInfo> list = new ArrayList<CategoryInfo>();
 			JSONArray array = new JSONArray(json);

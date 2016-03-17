@@ -82,8 +82,13 @@ public abstract class MyBaseAdapter<T> extends BaseAdapter implements RecyclerLi
 		if(position == getCount()-1){
 			return MORE_ITEM_TYPE;
 		}else{
-			return ITEM_DATA_TYPE;
+			return getInnerItemViewType(position);
 		}
+	}
+	
+	public int getInnerItemViewType(int position) {
+		// TODO Auto-generated method stub
+		return ITEM_DATA_TYPE;
 	}
 
 	/**
@@ -107,6 +112,9 @@ public abstract class MyBaseAdapter<T> extends BaseAdapter implements RecyclerLi
 		}
 		
 		if(getItemViewType(position)== ITEM_DATA_TYPE){
+			holder.setData(mDatas.get(position));
+		}
+		if(getItemViewType(position)== 2){
 			holder.setData(mDatas.get(position));
 		}
 		
