@@ -12,8 +12,11 @@ private static BaseActivity mForegroundActivity;
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		initView();
+		init();
 	}
 	
+	protected abstract void init();
+
 	protected abstract void initView() ;
 
 	@Override

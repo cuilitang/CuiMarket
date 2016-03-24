@@ -2,9 +2,13 @@ package cui.litang.cuimarket.fragment;
 
 import java.util.List;
 
+import android.content.Intent;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import cui.litang.cuimarket.BaseFragment;
+import cui.litang.cuimarket.DetailActivity;
 import cui.litang.cuimarket.adapter.BaseListAdapter;
 import cui.litang.cuimarket.bean.AppInfo;
 import cui.litang.cuimarket.jsonparser.HomeProtocol;
@@ -12,7 +16,7 @@ import cui.litang.cuimarket.utils.UIUtils;
 import cui.litang.cuimarket.widget.BaseListView;
 import cui.litang.cuimarket.widget.LoadingPage.LoadingState;
 
-public class HomeFragment extends BaseFragment {
+public class HomeFragment extends BaseFragment{
 
 	private List<AppInfo> mDatas;
 
@@ -22,6 +26,7 @@ public class HomeFragment extends BaseFragment {
 		BaseListView listView = new BaseListView(UIUtils.getContext());
 		HomeAdapter homeAdapter = new HomeAdapter(listView, mDatas);
 		listView.setAdapter(homeAdapter);
+		
 		return listView;
 	}
 
@@ -33,10 +38,11 @@ public class HomeFragment extends BaseFragment {
 		return checkJson(mDatas);
 	}
 	
-	private class HomeAdapter extends BaseListAdapter{
+	private class HomeAdapter extends BaseListAdapter implements OnItemClickListener {
 
 		public HomeAdapter(ListView view, List<AppInfo> mDatas) {
 			super(view, mDatas);
+			view.setOnItemClickListener(this);
 		}
 
 		@Override
@@ -45,8 +51,24 @@ public class HomeFragment extends BaseFragment {
 			return protocol.load(getmDatas().size());
 		}
 
+		/**
+		 * OnItemClickListener
+		 */
+		@Override
+		public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+			
+			Intent intent = new Intent(UIUtils.getContext(),DetailActivity.class);
+			intent.putExtra("packageName", getmDatas().get(position).getPackageName());
+			startActivity(intent);
+		}
+		
+		
+
 		
 	}
+
+	
+	
 	
 
 

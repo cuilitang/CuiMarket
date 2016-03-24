@@ -78,4 +78,10 @@ public class MainActivity extends BaseActivity implements OnPageChangeListener{
 		fragment.show();
 	}
 
+	@Override
+	protected void init() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
