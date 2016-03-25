@@ -7,6 +7,7 @@ import android.view.ViewParent;
 import android.widget.FrameLayout;
 import cui.litang.cuimarket.bean.AppInfo;
 import cui.litang.cuimarket.holder.DetailInfoHolder;
+import cui.litang.cuimarket.holder.DetailSafeHolder;
 import cui.litang.cuimarket.jsonparser.DetailProtocol;
 import cui.litang.cuimarket.utils.UIUtils;
 import cui.litang.cuimarket.widget.LoadingPage;
@@ -53,10 +54,20 @@ public class DetailActivity extends BaseActivity {
 	protected View createSuccessView() {
 		
 		View view = UIUtils.inflate(R.layout.activity_detail);
+		
+		//第一部分
 		FrameLayout detail_info = (FrameLayout) view.findViewById(R.id.detail_info);
 		DetailInfoHolder holder = new DetailInfoHolder();
 		holder.setData(appInfo);
 		detail_info.addView(holder.getRootView());
+		
+		//第二部分
+		FrameLayout detail_safe = (FrameLayout) view.findViewById(R.id.detail_safe);
+		DetailSafeHolder detailSafeHolder = new DetailSafeHolder();
+		detailSafeHolder.setData(appInfo);
+		detail_safe.addView(detailSafeHolder.getRootView());
+		
+		
 		return view;
 	}
 
