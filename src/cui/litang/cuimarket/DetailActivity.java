@@ -5,9 +5,11 @@ import android.graphics.Rect;
 import android.view.View;
 import android.view.ViewParent;
 import android.widget.FrameLayout;
+import android.widget.HorizontalScrollView;
 import cui.litang.cuimarket.bean.AppInfo;
 import cui.litang.cuimarket.holder.DetailInfoHolder;
 import cui.litang.cuimarket.holder.DetailSafeHolder;
+import cui.litang.cuimarket.holder.DetailScrollHolder;
 import cui.litang.cuimarket.jsonparser.DetailProtocol;
 import cui.litang.cuimarket.utils.UIUtils;
 import cui.litang.cuimarket.widget.LoadingPage;
@@ -66,6 +68,12 @@ public class DetailActivity extends BaseActivity {
 		DetailSafeHolder detailSafeHolder = new DetailSafeHolder();
 		detailSafeHolder.setData(appInfo);
 		detail_safe.addView(detailSafeHolder.getRootView());
+		
+		//第三部分
+		HorizontalScrollView detail_scroll = (HorizontalScrollView) view.findViewById(R.id.detail_screen);
+		DetailScrollHolder detailScrollHolder = new DetailScrollHolder();
+		detailScrollHolder.setData(appInfo);
+		detail_scroll.addView(detailScrollHolder.getRootView());
 		
 		
 		return view;

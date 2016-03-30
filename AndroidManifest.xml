@@ -26,6 +26,7 @@
             </intent-filter>
         </activity>
         <activity android:name="cui.litang.cuimarket.DetailActivity" android:screenOrientation="portrait"></activity>
+        <activity android:name="cui.litang.cuimarket.ImageScaleActivity"></activity>
     </application>
 
 </manifest>
