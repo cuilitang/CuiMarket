@@ -7,6 +7,7 @@ import android.view.ViewParent;
 import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
 import cui.litang.cuimarket.bean.AppInfo;
+import cui.litang.cuimarket.holder.DetailDesHolder;
 import cui.litang.cuimarket.holder.DetailInfoHolder;
 import cui.litang.cuimarket.holder.DetailSafeHolder;
 import cui.litang.cuimarket.holder.DetailScrollHolder;
@@ -74,6 +75,12 @@ public class DetailActivity extends BaseActivity {
 		DetailScrollHolder detailScrollHolder = new DetailScrollHolder();
 		detailScrollHolder.setData(appInfo);
 		detail_scroll.addView(detailScrollHolder.getRootView());
+		
+		//第四部分
+		FrameLayout detail_des = (FrameLayout) view.findViewById(R.id.detail_des);
+		DetailDesHolder detailDesHolder = new DetailDesHolder();
+		detailDesHolder.setData(appInfo);
+		detail_des.addView(detailDesHolder.getRootView());
 		
 		
 		return view;
