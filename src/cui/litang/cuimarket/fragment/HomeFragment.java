@@ -11,6 +11,7 @@ import cui.litang.cuimarket.BaseFragment;
 import cui.litang.cuimarket.DetailActivity;
 import cui.litang.cuimarket.adapter.BaseListAdapter;
 import cui.litang.cuimarket.bean.AppInfo;
+import cui.litang.cuimarket.holder.HomePicHolder;
 import cui.litang.cuimarket.jsonparser.HomeProtocol;
 import cui.litang.cuimarket.utils.UIUtils;
 import cui.litang.cuimarket.widget.BaseListView;
@@ -19,11 +20,20 @@ import cui.litang.cuimarket.widget.LoadingPage.LoadingState;
 public class HomeFragment extends BaseFragment{
 
 	private List<AppInfo> mDatas;
+	private List<String> pictureUrl;
 
 	@Override
 	protected View createSuccessView() {
 
 		BaseListView listView = new BaseListView(UIUtils.getContext());
+		
+		//轮播图Holder
+		if(null!=pictureUrl&&pictureUrl.size()>0){
+			HomePicHolder homePicHolder = new HomePicHolder();
+			homePicHolder.setData(pictureUrl);
+			listView.addHeaderView(homePicHolder.getRootView());
+		}
+		
 		HomeAdapter homeAdapter = new HomeAdapter(listView, mDatas);
 		listView.setAdapter(homeAdapter);
 		
@@ -35,6 +45,8 @@ public class HomeFragment extends BaseFragment{
 		
 		HomeProtocol protocol = new HomeProtocol();
 		mDatas = protocol.load(0);
+		
+		pictureUrl = protocol.getPictureUrl();//获取轮播图的地址Urlstring
 		return checkJson(mDatas);
 	}
 	
@@ -61,15 +73,5 @@ public class HomeFragment extends BaseFragment{
 			intent.putExtra("packageName", getmDatas().get(position).getPackageName());
 			startActivity(intent);
 		}
-		
-		
-
-		
 	}
-
-	
-	
-	
-
-
 }
