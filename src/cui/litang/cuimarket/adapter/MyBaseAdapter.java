@@ -6,6 +6,8 @@ import java.util.List;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView.RecyclerListener;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import cui.litang.cuimarket.holder.BaseHolder;
@@ -13,7 +15,7 @@ import cui.litang.cuimarket.holder.MoreHolder;
 import cui.litang.cuimarket.manager.ThreadManager;
 import cui.litang.cuimarket.utils.UIUtils;
 
-public abstract class MyBaseAdapter<T> extends BaseAdapter implements RecyclerListener {
+public abstract class MyBaseAdapter<T> extends BaseAdapter implements RecyclerListener,OnItemClickListener {
 
 	
 	public ListView mListView;
@@ -218,5 +220,31 @@ public abstract class MyBaseAdapter<T> extends BaseAdapter implements RecyclerLi
 	 * @return
 	 */
 	protected abstract List onLoadMore();
+	
+	/**
+	 * OnItemClickListener
+	 */
+	@Override
+	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+		
+		position = position - getListViewHeadCount(position);
+		OnInnerItemClick(position);
+		
+	}
+
+	/**
+	 * OnItemClickListener 应由子类来实现
+	 * @param position 去掉ListView的Header之后得到的实际的position
+	 */
+	public void OnInnerItemClick(int position) {}
+
+	private int getListViewHeadCount(int position) {
+		
+			int count = 0;
+			if(null!=mListView){
+					count = mListView.getHeaderViewsCount();
+			}
+		return count;
+	}
 
 }

@@ -37,6 +37,7 @@ public class GameFragment extends BaseFragment {
 
 		public GameAdapter(ListView view, List<AppInfo> mDatas) {
 			super(view, mDatas);
+			view.setOnItemClickListener(this);
 		}
 
 		@Override

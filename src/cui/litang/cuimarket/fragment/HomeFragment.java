@@ -50,7 +50,7 @@ public class HomeFragment extends BaseFragment{
 		return checkJson(mDatas);
 	}
 	
-	private class HomeAdapter extends BaseListAdapter implements OnItemClickListener {
+	private class HomeAdapter extends BaseListAdapter {
 
 		public HomeAdapter(ListView view, List<AppInfo> mDatas) {
 			super(view, mDatas);
@@ -61,17 +61,6 @@ public class HomeFragment extends BaseFragment{
 		protected List onLoadMore() {
 			HomeProtocol protocol = new HomeProtocol();
 			return protocol.load(getmDatas().size());
-		}
-
-		/**
-		 * OnItemClickListener
-		 */
-		@Override
-		public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-			
-			Intent intent = new Intent(UIUtils.getContext(),DetailActivity.class);
-			intent.putExtra("packageName", getmDatas().get(position).getPackageName());
-			startActivity(intent);
 		}
 	}
 }

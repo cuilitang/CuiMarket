@@ -113,7 +113,9 @@ public class IndicatorView extends View {
 		}
 		setMeasuredDimension(width, height);
 	}
-
+	
+	
+	
 	@Override
 	protected void onDraw(Canvas canvas) {
 		super.onDraw(canvas);

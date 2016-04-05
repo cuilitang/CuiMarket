@@ -36,6 +36,7 @@ public class AppFragment extends BaseFragment {
 
 		public AppAdapter(ListView view, List<AppInfo> mDatas) {
 			super(view, mDatas);
+			view.setOnItemClickListener(this);
 		}
 
 		@Override
