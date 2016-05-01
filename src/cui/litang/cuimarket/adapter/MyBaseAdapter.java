@@ -34,6 +34,10 @@ public abstract class MyBaseAdapter<T> extends BaseAdapter implements RecyclerLi
 		super();
 		
 	}
+	
+	public List<BaseHolder> getDisplayHolderLists(){
+		return mDisplayHolderList;
+	}
 
 	public MyBaseAdapter(ListView view, List<T> mDatas) {
 		mListView = view;

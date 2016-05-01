@@ -11,13 +11,15 @@ import cui.litang.cuimarket.BaseFragment;
 import cui.litang.cuimarket.DetailActivity;
 import cui.litang.cuimarket.adapter.BaseListAdapter;
 import cui.litang.cuimarket.bean.AppInfo;
+import cui.litang.cuimarket.bean.DownloadInfo;
 import cui.litang.cuimarket.holder.HomePicHolder;
 import cui.litang.cuimarket.jsonparser.HomeProtocol;
+import cui.litang.cuimarket.manager.DownloadManager.DownloadObserver;
 import cui.litang.cuimarket.utils.UIUtils;
 import cui.litang.cuimarket.widget.BaseListView;
 import cui.litang.cuimarket.widget.LoadingPage.LoadingState;
 
-public class HomeFragment extends BaseFragment{
+public class HomeFragment extends BaseFragment implements DownloadObserver{
 
 	private List<AppInfo> mDatas;
 	private List<String> pictureUrl;
@@ -62,5 +64,17 @@ public class HomeFragment extends BaseFragment{
 			HomeProtocol protocol = new HomeProtocol();
 			return protocol.load(getmDatas().size());
 		}
+	}
+
+	@Override
+	public void onRegisterDownloadStateChanged(DownloadInfo info) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onRegisterDownloadProgressed(DownloadInfo info) {
+		// TODO Auto-generated method stub
+		
 	}
 }
