@@ -77,9 +77,9 @@ public class DownloadManager {
 	}
 
 	/**
-	 * 注册一个下载状态
+	 * 注册观察者
 	 */
-	public void registerDownloadStateChanged(DownloadObserver observer) {
+	public void registerDownloadObserver(DownloadObserver observer) {
 		synchronized (mDownloadObserverLists) {
 			if (!mDownloadObserverLists.contains(observer)) {
 				mDownloadObserverLists.add(observer);
@@ -88,9 +88,9 @@ public class DownloadManager {
 	}
 
 	/**
-	 * 反注册
+	 * 注销观察者
 	 */
-	public void unRegisterDownloadStateChanged(DownloadObserver observer) {
+	public void unRegisterDownloadObserver(DownloadObserver observer) {
 		synchronized (mDownloadObserverLists) {
 			if (mDownloadObserverLists.contains(observer)) {
 				mDownloadObserverLists.remove(observer);
@@ -99,14 +99,14 @@ public class DownloadManager {
 	}
 
 	/**
-	 * 下载的观察者
+	 * 观察者接口
 	 */
 	public interface DownloadObserver {
-		// 注册一个观察者
-		public void onRegisterDownloadStateChanged(DownloadInfo info);
+		// 观察状态
+		public void onDownloadStateChanged(DownloadInfo info);
 
-		// 反注册一个观察
-		public void onRegisterDownloadProgressed(DownloadInfo info);
+		// 观察进度
+		public void onDownloadProgressChanged(DownloadInfo info);
 	}
 
 	/**
@@ -117,7 +117,7 @@ public class DownloadManager {
 	public void notifyDownloadStateChanged(DownloadInfo info) {
 		synchronized (mDownloadObserverLists) {
 			for (DownloadObserver observer : mDownloadObserverLists) {
-				observer.onRegisterDownloadStateChanged(info);
+				observer.onDownloadStateChanged(info);
 			}
 		}
 	}
@@ -127,10 +127,10 @@ public class DownloadManager {
 	 * 
 	 * @param info
 	 */
-	public void notifyDownloadProgressed(DownloadInfo info) {
+	public void notifyDownloadProgressChanged(DownloadInfo info) {
 		synchronized (mDownloadObserverLists) {
 			for (DownloadObserver observer : mDownloadObserverLists) {
-				observer.onRegisterDownloadProgressed(info);
+				observer.onDownloadProgressChanged(info);
 			}
 		}
 	}
@@ -184,7 +184,7 @@ public class DownloadManager {
 						fos.write(buffer, 0, len);
 						fos.flush();
 						info.setCurrentSize(info.getCurrentSize() + len);
-						notifyDownloadProgressed(info);// 刷新进度
+						notifyDownloadProgressChanged(info);// 刷新进度
 					}
 				} catch (Exception e) {
 					LogUtils.e(e);// 出异常后需要修改状态并删除文件

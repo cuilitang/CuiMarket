@@ -2,27 +2,42 @@ package cui.litang.cuimarket.fragment;
 
 import java.util.List;
 
-import android.content.Intent;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import cui.litang.cuimarket.BaseFragment;
-import cui.litang.cuimarket.DetailActivity;
 import cui.litang.cuimarket.adapter.BaseListAdapter;
 import cui.litang.cuimarket.bean.AppInfo;
-import cui.litang.cuimarket.bean.DownloadInfo;
 import cui.litang.cuimarket.holder.HomePicHolder;
 import cui.litang.cuimarket.jsonparser.HomeProtocol;
-import cui.litang.cuimarket.manager.DownloadManager.DownloadObserver;
 import cui.litang.cuimarket.utils.UIUtils;
 import cui.litang.cuimarket.widget.BaseListView;
 import cui.litang.cuimarket.widget.LoadingPage.LoadingState;
 
-public class HomeFragment extends BaseFragment implements DownloadObserver{
+public class HomeFragment extends BaseFragment{
 
 	private List<AppInfo> mDatas;
 	private List<String> pictureUrl;
+	private HomeAdapter mAdapter;
+	
+	/** 可见时，需要启动监听，以便随时根据下载状态刷新页面 */
+	@Override
+	public void onResume() {
+		super.onResume();
+		if (mAdapter != null) {
+			mAdapter.startObserver();
+			mAdapter.notifyDataSetChanged();
+		}
+	}
+	 
+
+	/** 不可见时，需要关闭监听 */
+	@Override
+	public void onPause() {
+		super.onPause();
+		if (mAdapter != null) {
+			mAdapter.stopObserver();
+		}
+	}
 
 	@Override
 	protected View createSuccessView() {
@@ -36,8 +51,11 @@ public class HomeFragment extends BaseFragment implements DownloadObserver{
 			listView.addHeaderView(homePicHolder.getRootView());
 		}
 		
-		HomeAdapter homeAdapter = new HomeAdapter(listView, mDatas);
-		listView.setAdapter(homeAdapter);
+		mAdapter = new HomeAdapter(listView, mDatas);
+		listView.setAdapter(mAdapter);
+		
+		mAdapter.startObserver();
+		mAdapter.notifyDataSetChanged();
 		
 		return listView;
 	}
@@ -64,17 +82,5 @@ public class HomeFragment extends BaseFragment implements DownloadObserver{
 			HomeProtocol protocol = new HomeProtocol();
 			return protocol.load(getmDatas().size());
 		}
-	}
-
-	@Override
-	public void onRegisterDownloadStateChanged(DownloadInfo info) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void onRegisterDownloadProgressed(DownloadInfo info) {
-		// TODO Auto-generated method stub
-		
 	}
 }

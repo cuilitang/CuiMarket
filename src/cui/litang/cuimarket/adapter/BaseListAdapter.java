@@ -32,34 +32,25 @@ public abstract class BaseListAdapter extends MyBaseAdapter<AppInfo> implements 
 	}
 
 	
-	/**
-	 * 注册一个观察者下载状态
-	 * 
-	 * @param homeFragment
-	 */
-	public void registerDownloadStateChanged(DownloadObserver observer) {
-		DownloadManager.getInstance().registerDownloadStateChanged(observer);
-
+	public void startObserver() {
+		DownloadManager.getInstance().registerDownloadObserver(this);
 	}
 
-	public void unregisterDataSetObserver(DownloadObserver observer) {
-		DownloadManager.getInstance().unRegisterDownloadStateChanged(observer);
-
+	public void stopObserver() {
+		DownloadManager.getInstance().unRegisterDownloadObserver(this);
 	}
-	
+
 	@Override
-	public void onRegisterDownloadStateChanged(DownloadInfo info) {
-
-		refreshState(info);
+	public void onDownloadStateChanged(final DownloadInfo info) {
+		refreshHolder(info);
 	}
-	
+
 	@Override
-	public void onRegisterDownloadProgressed(DownloadInfo info) {
-		refreshState(info);
-
+	public void onDownloadProgressChanged(DownloadInfo info) {
+		refreshHolder(info);
 	}
 	
-	private void refreshState(final DownloadInfo info) {
+	private void refreshHolder(final DownloadInfo info) {
 		// 获取到所有界面可见的holder
 		List<BaseHolder> displayHolderLists = getDisplayHolderLists();
 

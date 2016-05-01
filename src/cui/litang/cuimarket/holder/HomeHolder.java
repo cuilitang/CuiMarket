@@ -32,7 +32,6 @@ public class HomeHolder extends BaseHolder<AppInfo> implements OnClickListener {
 	
 	
 	private int mState;
-	private AppInfo appInfo;
 	private DownloadManager mDownloadManager;
 	private DownloadInfo downloadInfo;
 	private float mProgress;
@@ -90,7 +89,7 @@ public class HomeHolder extends BaseHolder<AppInfo> implements OnClickListener {
 	@Override
 	public void refreshView() {
 		
-		appInfo = getData();
+		AppInfo appInfo = getData();
 		item_title.setText(appInfo.getName());
 		item_rating.setRating(appInfo.getStars());
 		item_size.setText(StringUtils.formatFileSize(appInfo.getSize()));
@@ -158,19 +157,16 @@ public class HomeHolder extends BaseHolder<AppInfo> implements OnClickListener {
 			if (DownloadManager.STATE_NONE == mState
 					|| DownloadManager.STATE_PAUSED == mState
 					|| DownloadManager.STATE_ERROR == mState) {
-				mDownloadManager.download(appInfo);
+				mDownloadManager.download(getData());
 			} else if (DownloadManager.STATE_DLOWNLOADING == mState
 					|| DownloadManager.STATE_WAITING == mState) {
-				mDownloadManager.stop(appInfo);
+				mDownloadManager.stop(getData());
 			} else if (DownloadManager.STATE_DOWNLOADED == mState) {
-				mDownloadManager.install(appInfo);
+				mDownloadManager.install(getData());
 			}
 			break;
 
 		}
 
 	}
-	
-	
-
 }
