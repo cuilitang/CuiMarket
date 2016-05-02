@@ -7,6 +7,7 @@ import android.view.ViewParent;
 import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
 import cui.litang.cuimarket.bean.AppInfo;
+import cui.litang.cuimarket.holder.DetailBottomHolder;
 import cui.litang.cuimarket.holder.DetailDesHolder;
 import cui.litang.cuimarket.holder.DetailInfoHolder;
 import cui.litang.cuimarket.holder.DetailSafeHolder;
@@ -20,6 +21,7 @@ public class DetailActivity extends BaseActivity {
 
 	private String packageName;
 	private AppInfo appInfo;
+	private DetailBottomHolder detailBottomHolder;
 
 	@Override
 	protected void initView() {
@@ -82,7 +84,13 @@ public class DetailActivity extends BaseActivity {
 		detailDesHolder.setData(appInfo);
 		detail_des.addView(detailDesHolder.getRootView());
 		
-		
+		//第五部分
+		FrameLayout detail_bottom = (FrameLayout) view.findViewById(R.id.bottom_layout);
+		detailBottomHolder = new DetailBottomHolder();
+		detailBottomHolder.setData(appInfo);
+		detail_bottom.addView(detailBottomHolder.getRootView());
+		detailBottomHolder.startObserver();
+
 		return view;
 	}
 
@@ -94,6 +102,14 @@ public class DetailActivity extends BaseActivity {
 			 packageName = intent.getStringExtra("packageName");
 			 
 		}
+	}
+	
+	@Override
+	protected void onDestroy() {
+		if (detailBottomHolder != null) {
+			detailBottomHolder.stopObserver();
+		}
+		super.onDestroy();
 	}
 
 }
