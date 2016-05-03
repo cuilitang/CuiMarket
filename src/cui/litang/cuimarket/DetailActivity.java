@@ -2,6 +2,7 @@ package cui.litang.cuimarket;
 
 import android.content.Intent;
 import android.graphics.Rect;
+import android.support.v7.app.ActionBar;
 import android.view.View;
 import android.view.ViewParent;
 import android.widget.FrameLayout;
@@ -110,6 +111,13 @@ public class DetailActivity extends BaseActivity {
 			detailBottomHolder.stopObserver();
 		}
 		super.onDestroy();
+	}
+
+	@Override
+	protected void initActionBar() {
+		ActionBar actionBar = getSupportActionBar();
+		actionBar.setDisplayHomeAsUpEnabled(true);
+		
 	}
 
 }

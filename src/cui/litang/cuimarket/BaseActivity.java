@@ -13,8 +13,11 @@ private static BaseActivity mForegroundActivity;
 		super.onCreate(savedInstanceState);
 		initView();
 		init();
+		initActionBar();
 	}
 	
+	protected void initActionBar() {}
+
 	protected abstract void init();
 
 	protected abstract void initView() ;
