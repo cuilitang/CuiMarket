@@ -7,6 +7,11 @@ import android.widget.FrameLayout;
 import cui.litang.cuimarket.R;
 
 
+/**
+ * 测量屏幕宽度，然后按照宽高比例显示图片
+ * @author Cuilitang
+ *
+ */
 public class RatioLayout extends FrameLayout {
 	// 宽和高的比例
 	private float ratio = 0.0f;
